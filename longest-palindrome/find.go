@@ -1,7 +1,5 @@
 package palindrome
 
-import "fmt"
-
 func longestPalindrome(s string) string {
 	m := fillMatrix(s)
 
@@ -13,10 +11,9 @@ func longestPalindromeFromSubstrings(m [][]int, s string) string {
 
 	for i := 0; i < len(m); i++ {
 		for j := 0; j < len(m[i]); j++ {
-			if m[i][j] > 0 {
+			if m[i][j] > 0 && m[i][j] > len(longestPalindrome) {
 				subStr := getSubstring(m, s, i, j)
 				if isPalindrome(subStr, 0, len(subStr)-1) && len(subStr) > len(longestPalindrome) {
-					fmt.Printf("subStr: %v, len: %v, old ans: %v", subStr, len(subStr), longestPalindrome)
 					longestPalindrome = subStr
 				}
 			}
@@ -40,7 +37,7 @@ func isPalindrome(s string, start, end int) bool {
 		return true
 	}
 	if s[start] == s[end] {
-		isPalindrome(s, start+1, end-1)
+		return isPalindrome(s, start+1, end-1)
 	}
 	return false
 }

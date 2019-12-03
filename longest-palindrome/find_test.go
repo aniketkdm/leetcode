@@ -34,6 +34,20 @@ func Test_longestPalindrome(t *testing.T) {
 			},
 			want: "b",
 		},
+		{
+			name: "different from longest substring",
+			args: args{
+				s: "aaczecaa",
+			},
+			want: "aa",
+		},
+		{
+			name: "different from longest substring and greater than palindrome in substring",
+			args: args{
+				s: "aaczecaabcb",
+			},
+			want: "bcb",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -82,14 +96,14 @@ func Test_isPalindrome(t *testing.T) {
 		want bool
 	}{
 		{
-		name: "",
-		args: args{
-			s:     "",
-			start: 0,
-			end:   0,
+			name: "basic",
+			args: args{
+				s:     "bcb",
+				start: 0,
+				end:   2,
+			},
+			want: true,
 		},
-		want: false,
-	}
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
